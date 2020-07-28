@@ -1,0 +1,88 @@
+<html ng-app="myApp">
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <script src="lib/angular/angular.js"></script>
+        <script src="employee.js"></script>
+        <link href="employee.css" rel="stylesheet">
+    </head>
+    <body ng-controller="ctrl">
+        <div>
+            <h1>Employee details:</h1>
+            <form>
+               <label for="firstname"> Full Name</label><br>
+               <input type="text" id="firstname"  ng-model="newEmployees.name"><br><br>
+
+               <label for="address">Address</label><br>
+               <input type="text" id="address"  ng-model="newEmployees.Address"><br>
+               <br>
+               <labe for="EmailId">Email Id</label><br>
+               <input type="text" id="EmailId" ng-model="newEmployees.EmailId"><br>
+               <br>
+               <label for="dob">Date of Birth</label><br>
+               <input type="date" id="dob" ng-model="newEmployees.dob">
+               <br>
+               <br>
+               <label for="gender">Gender</label><br>
+               <select id="gender" ng-model="newEmployees.gender">
+               <option value="male">Male</option>
+               <option value="female">Female</option>
+               </select>
+               <br>
+               <br>
+               <label for="doj">date of joining</label><br>
+               <input type="text" id="doj" ng-model="newEmployees.doj"><br>
+               <br>
+               <span>Marrital Status</span><br>
+                   <label><input value="married" type="radio" name="marritalstatus" ng-model="newEmployees.Status">Married</label>
+                   <lable><input value="notmarried" type="radio" name="marritalstatus" ng-model="newEmployees.Status">Not Married</lable>
+                   <br>
+                   <br>
+                <label for="contactNo">Contact No</label><br>
+                <input type="text" id="contactNo" ng-model="newEmployees.No">
+                <br>
+                <br>
+
+                <input type="hidden" ng-model="newEmployees.id" />
+ 
+                <input type="button" value="Save" ng-click="saveRecord()" class="button">
+        <br>
+        <br>
+                 <div>
+                    search: <input type="text" placeholder="search employees" ng-model="searchEmployees.name"><br>
+                    <br>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>Email Id</th>
+                            <th>DOB</th>
+                            <th>Gender</th>
+                            <th>Date of joining</th>
+                            <th>Marrital status</th>
+                            <th>Contact No</th>
+                            <th>Action</th>
+                        </tr>
+                        <tr ng-repeat="Employee in Employees | filter:searchEmployees">
+                            <td>{{Employee.name}}</td>
+                            <td>{{Employee.Address}}</td>
+                            <td>{{Employee.EmailId}}</td>
+                            <td>{{Employee.dob | date:"dd/MM/yyyy"}}</td>
+                            <td>{{Employee.gender}}</td>
+                            <td>{{Employee.doj}}</td>
+                            <td>{{Employee.Status}}</td>
+                            <td>{{Employee.No}}</td>
+                            <td>
+ 
+                                <a href="#" ng-click="edit(Employee.id)">edit</a> | 
+             
+                                <a href="#" ng-click="delete(Employee.id)">delete</a>
+                            </td>
+                        </tr>
+                    </thead>
+                </table>
+                 </div>
+            </form>
+        </div>
+    </body>
+</html>
